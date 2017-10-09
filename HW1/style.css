@@ -8,6 +8,13 @@ body {
     color:#1e1e1e;
 }
 
+.icon {
+    width:90%;
+    height:auto;
+    display:block;
+    margin: 20px auto;
+}
+
 .navbar {
     border:none;
     border-radius:0px;
