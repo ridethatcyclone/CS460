@@ -5,15 +5,6 @@ function main() {
         $(this).next().slideToggle(400);
     })
 
-    $('.delete-btn').on('click', function() {
-        if (confirm('Are you sure?')) {
-            $(this).parentElement.parentElement.remove();
-        }
-        else {
-            return false;
-        }
-    })
-
     $('.submit-btn').on('click', function() {
         submitNewBook();
         $('#add')[0].reset();
