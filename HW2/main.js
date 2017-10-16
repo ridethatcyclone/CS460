@@ -1,14 +1,8 @@
-var bookNum = 0;
-
 function main() {
     $('.add-form').hide();
     $('.bookshelf').hide();
     $('.options').on('click', function() {
         $(this).next().slideToggle(400);
-    })
-
-    $('.dtTitle').on('click', function() {
-        $(this).parentElement.hide();
     })
 
     $('.delete-btn').on('click', function() {
@@ -45,10 +39,9 @@ function submitNewBook() {
         return;
     }
     else {
-        /* ADD BOOK OBJECT TO BOOKSHELF */
+        /* ADD BOOK TO BOOKSHELF */
         var percentage = (pagesRead/totalPages) * 100;
         $('.bookshelf').append("<div class='book'><dl><dt class='dtTitle'>" + title + "</dt><dd>by " + author + "</dd><dd>" + pagesRead + " out of " + totalPages + " pages read</dd></dl><div class='progress-bar' style='width:100%;background-color:#ccc; height:30px;'><div style='width:" + percentage + "%; height:30px;background-color:#89e589;'></div></div><div class='editButtons btn-group'><button class='btn btn-primary delete-btn' onclick=\"if (confirm('Are you sure?')) {$(this).closest('.book').remove();} else return false;\">delete</button></div></div>");
-        bookNum++;
     }
 
 }
