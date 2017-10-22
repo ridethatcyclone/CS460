@@ -6,10 +6,21 @@ using System.Threading.Tasks;
 
 namespace HW3
 {
+    /// <summary>
+    /// Command line postfix calculator.
+    /// </summary>
+    /// 
     class Calculator
     {
+        /**
+         * The stack we are using to hold operands
+         */
         private StackADT stack = new LinkedStack();
         
+        /**
+         * Main method. Disregards command line arguments.
+         * <param name="args">The command line arguments</param>
+         */
         public static void Main(String[] args)
         {
             Calculator app = new Calculator();
@@ -23,6 +34,10 @@ namespace HW3
             Console.WriteLine("Bye.");
         }
 
+        /// <summary>
+        /// Gets an input string in from the user and performs a calculation.
+        /// </summary>
+        /// <returns>True if the calculation was successful, false if the user quits</returns>
         private bool DoCalculation()
         {
             Console.WriteLine("Please enter q to quit\n");
@@ -52,6 +67,11 @@ namespace HW3
             return true;
         }
 
+        /// <summary>
+        /// Performs the actual calculation of an expression in postfix form
+        /// </summary>
+        /// <param name="input">Postfix mathematical expression as a string</param>
+        /// <returns>Answer as a string</returns>
         public String EvaluatePostFixInput(String input)
         {
             if (input == null || input.Equals(""))
@@ -93,6 +113,13 @@ namespace HW3
             return ((Double)(stack.Pop())).ToString();
         }
 
+        /// <summary>
+        /// Perform arithmetic.
+        /// </summary>
+        /// <param name="a">First operand</param>
+        /// <param name="b">Second operand</param>
+        /// <param name="s">operator</param>
+        /// <returns>The answer</returns>
         public Double DoOperation(double a, double b, String s)
         {
             double c = 0.0;
