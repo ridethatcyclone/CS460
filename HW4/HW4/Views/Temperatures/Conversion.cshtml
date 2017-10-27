@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Temperature Conversion";
+}
+
+<h2>Temperature Conversion</h2>
+
+<form method="post">
+    <label for="num">Temperature to Convert</label><br />
+    <input type="number" name="num" value=""/><br /><br />
+    <label for="type">From:</label><br />
+    <input type="radio" name="type" value="fahrenheit" checked /> Fahrenheit <br />
+    <input type="radio" name="type" value="celsius" /> Celsius <br />
+    <input type="radio" name="type" value="kelvin" /> Kelvin <br /><br />
+    <input type="submit" value="Convert" />
+</form>
+
+
