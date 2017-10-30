@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Result";
+}
+
+<h2>Result</h2>
+
+<ul style="list-style:none;">
+    <li style="margin-top:10px;">Fahrenheit: @ViewBag.f</li>
+    <li style="margin-top:10px;">Celsius: @ViewBag.c</li>
+    <li style="margin-top:10px;">Kelvin: @ViewBag.k</li>
+</ul>
+<br />
+@Html.ActionLink("Go again", "Conversion");
