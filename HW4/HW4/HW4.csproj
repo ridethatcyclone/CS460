@@ -142,6 +142,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\GuestBookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TemperaturesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -186,6 +187,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Temperatures\Conversion.cshtml" />
     <Content Include="Views\Temperatures\Result.cshtml" />
+    <Content Include="Views\GuestBook\Visitors.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
