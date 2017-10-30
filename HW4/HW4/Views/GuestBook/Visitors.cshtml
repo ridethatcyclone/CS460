@@ -5,14 +5,18 @@
 
 <h2>Visitors</h2>
 
-<form>
+<form method="post">
     <label for="FirstName">First Name</label><br />
     <input type="text" name="FirstName" value="" /><br />
     <label for="LastName">Last Name</label><br />
-    <input type="text" name="LastName" value="" /><br />
+    <input type="text" name="LastName" value="" /><br /><br />
     <input type="submit" />
-</form>
+</form><br />
 
-<table>
 
-</table>
+@if (IsPost)
+{
+    <p>
+        Thanks for visiting @ViewBag.FirstName @ViewBag.LastName! Your visit was logged at @ViewBag.Time.
+    </p>
+}
