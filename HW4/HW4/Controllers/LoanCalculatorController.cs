@@ -27,7 +27,7 @@ namespace HW4.Controllers
                 // Calculations
                 double IR = InterestRate.Value / 100;
                 double I = IR / 12;
-                double D = ((Math.Pow(1 + I, 360)) - 1) / (I * Math.Pow((1 + I), 360));
+                double D = ((Math.Pow(1 + I, TermLength.Value)) - 1) / (I * Math.Pow((1 + I), TermLength.Value));
                 double Result = LoanAmount.Value / D;
 
                 // Add to viewbag to be used on the page
@@ -36,7 +36,7 @@ namespace HW4.Controllers
                 ViewBag.LoanAmount = LoanAmount.Value.ToString("0.##") ;
                 ViewBag.InterestRate = InterestRate.Value;
                 ViewBag.TermLength = TermLength.Value;
-                ViewBag.TotalAmount = (LoanAmount.Value + (LoanAmount.Value * I)).ToString("0.##");
+                ViewBag.TotalAmount = (Result * TermLength.Value).ToString("0.##");
             }
             return View();
         }
