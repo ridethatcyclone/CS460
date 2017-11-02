@@ -31,12 +31,12 @@ namespace HW4.Controllers
                 double Result = LoanAmount.Value / D;
 
                 // Add to viewbag to be used on the page
-                ViewBag.Result = Result.ToString("0.##");
+                ViewBag.Result = Result.ToString("0.00");
                 ViewBag.ShowAnswer = true;
-                ViewBag.LoanAmount = LoanAmount.Value.ToString("0.##") ;
+                ViewBag.LoanAmount = LoanAmount.Value.ToString("0.00") ;
                 ViewBag.InterestRate = InterestRate.Value;
                 ViewBag.TermLength = TermLength.Value;
-                ViewBag.TotalAmount = (Result * TermLength.Value).ToString("0.##");
+                ViewBag.TotalAmount = (Result * TermLength.Value).ToString("0.00");
             }
             return View();
         }
