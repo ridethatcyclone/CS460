@@ -13,7 +13,6 @@ namespace HW4.Controllers
         {
             string num = Request.QueryString["num"];
             string type = Request.QueryString["type"];
-            double f, c, k;
 
             ViewBag.num = num;
             ViewBag.type = type;
