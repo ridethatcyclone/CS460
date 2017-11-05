@@ -1,0 +1,89 @@
+﻿@model HW5.Models.Request
+
+@{
+    ViewBag.Title = "Submit Request";
+}
+
+<div class="page-header" style="text-align:center; width:92%"><h1>Change of Address Form</h1></div>
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="col-md-3 col-md-offset-2">
+                <div class="input-group input-group-lg" style="width:100%">
+                    @Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control input-lg" } })
+                    @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="input-group input-group-lg" style="width:50%;">
+                    <label for="CustomerID" class="control-label">ID</label>
+                    @Html.EditorFor(model => model.CustomerID, new { htmlAttributes = new { @class = "form-control input-lg" } })
+                    @Html.ValidationMessageFor(model => model.CustomerID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="input-group input-group-lg" style="width:150%; margin-left:-50%;">
+                    @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control input-lg" } })
+                    @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div><br />
+
+        <div class="row">
+            <div class="col-md-offset-2 col-md-7">
+                <div class="input-group input-group-lg" style="width:100%;">
+                    @Html.LabelFor(model => model.StreetAddress, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.StreetAddress, new { htmlAttributes = new { @class = "form-control input-lg" } })
+                    @Html.ValidationMessageFor(model => model.StreetAddress, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div><br />
+
+        <div class="row">
+            <div class="col-md-offset-2 col-md-2">
+                <div class="input-group input-group-lg">
+                    @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control input-lg" } })
+                    @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="input-group input-group-lg">
+                    @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control input-lg" } })
+                    @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="input-group input-group-lg">
+                    @Html.LabelFor(model => model.ZipCode, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control input-lg" } })
+                    @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="input-group input-group-lg">
+                    @Html.LabelFor(model => model.County, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.County, new { htmlAttributes = new { @class = "form-control input-lg" } })
+                    @Html.ValidationMessageFor(model => model.County, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div><br />
+
+        <div class="row">
+            <div class="col-md-offset-4 col-md-3">
+                <div class="input-group input-group-lg" style="width:100%;">
+                    <input type="submit" value="Submit" class="btn btn-lg btn-primary" style="border-radius:0px; width:100%;" />
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

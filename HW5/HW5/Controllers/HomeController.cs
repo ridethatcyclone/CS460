@@ -10,7 +10,7 @@ namespace HW5.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return Redirect("~/Requests/Index");
         }
 
         public ActionResult About()

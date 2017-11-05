@@ -2,7 +2,7 @@
 CREATE TABLE dbo.Requests
 (
 	CustomerID INT NOT NULL,
-	DateOfBirth DATE NOT NULL,
+	DateOfBirth DateTime NOT NULL,
 	FullName NVARCHAR(128) NOT NULL,
 	StreetAddress NVARCHAR(128) NOT NULL,
 	City NVARCHAR(32) NOT NULL,
