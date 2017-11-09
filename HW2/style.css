@@ -21,10 +21,6 @@ body {
     font-size:18px;
 }
 
-.add-form ul {
-    list-style-type: none;
-}
-
 input {
     width:40%;
     margin:10px;
