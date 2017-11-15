@@ -1,16 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 
 namespace HW6.Controllers
 {
     public class HomeController : Controller
     {
+
+        //GET Index
         public ActionResult Index()
         {
-            return View();
+            using (ProductsContext db = new ProductsContext())
+            {
+                var products = db.Products;
+                return View(products.ToList());
+            }
         }
 
         public ActionResult About()

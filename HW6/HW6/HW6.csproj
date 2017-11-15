@@ -171,7 +171,7 @@
     <Compile Include="Models\ProductPhoto.cs" />
     <Compile Include="Models\ProductProductPhoto.cs" />
     <Compile Include="Models\ProductReview.cs" />
-    <Compile Include="Models\ProductsContext.cs" />
+    <Compile Include="DAL\ProductsContext.cs" />
     <Compile Include="Models\ProductSubcategory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\ScrapReason.cs" />
@@ -215,8 +215,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
