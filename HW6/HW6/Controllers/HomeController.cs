@@ -13,32 +13,27 @@ namespace HW6.Controllers
         //GET Index
         public ActionResult Index()
         {
-            /*
-            using (ProductsContext db = new ProductsContext())
-            {
-                var products = db.Products;
-                return View(products.ToList());
-            }
-            */
-
-            /*
-            var Cat = new string[db.ProductCategories.Count()];
-            for (int i = 0; i < db.ProductCategories.Count(); i++)
-            {
-                Cat[i] = db.ProductCategories.Where(p => p.ProductCategoryID == i).Select(p => p.Name).FirstOrDefault().ToString();
-            }
-            ViewBag.Categories = Cat;
-            */
             using (ProductsContext db = new ProductsContext())
             {
                 var Cat = new string[db.ProductCategories.Count()];
                 for (int i = 1; i <= db.ProductCategories.Count(); i++)
                 {
                     var x = db.ProductCategories.Where(p => p.ProductCategoryID == i).Select(p => p.Name).FirstOrDefault().ToString();
-                    if (x != null) Cat[i - 1] = x;
+                    if (x != null)
+                    {
+                        Cat[i - 1] = x;
+                        IList<string> a = new List<string>();
+                        foreach (var item in db.ProductSubcategories)
+                        {
+                            if (item.ProductCategoryID.Equals(i))
+                                a.Add(item.Name);
+                        }
+                        ViewData[x] = a;
+                    }
                 }
                 ViewBag.Categories = Cat;
                 
+                /*
                 for (int i = 1; i < db.ProductCategories.Count(); i++)
                 {
                     IList<string> a = new List<string>();
@@ -51,6 +46,7 @@ namespace HW6.Controllers
                     }
                     ViewData[i.ToString()] = a;
                 }
+                */
 
                 /*
                  * SUBCATEGORIES SETUP:
@@ -78,6 +74,13 @@ namespace HW6.Controllers
                 return View(menuViewModel);
             }
 
+
+
+        }
+
+        public ActionResult Display()
+        {
+            return View();
         }
 
        
