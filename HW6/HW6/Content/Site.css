@@ -22,3 +22,11 @@ select,
 textarea {
     max-width: 280px;
 }
+
+nav .navbar .navbar-inverse {
+    border-radius:0px;
+}
+
+ul .navbar {
+    border-radius:0px;
+}
