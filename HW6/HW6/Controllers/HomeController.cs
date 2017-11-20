@@ -25,7 +25,10 @@ namespace HW6.Controllers
         /// <returns>Redirects to Index if no selections were made, otherwise returns a View using the dbContext</returns>
         public ActionResult Display()
         {
+            //Get subcategory name from query string
             string DisplaySubcategory = Request.QueryString["PID"];
+
+            //Check validity
             if (string.IsNullOrEmpty(DisplaySubcategory))
             {
                 return RedirectToAction("Index");
@@ -33,11 +36,16 @@ namespace HW6.Controllers
 
             using (ProductsContext db = new ProductsContext())
             {
+                //Getting the Category and Subcategory ID Numbers (as well as the names, for the heading)
                 int id = db.ProductSubcategories.Where(p => p.Name.Equals(DisplaySubcategory)).Select(p => p.ProductCategoryID).FirstOrDefault();
                 string DisplayCategory = db.ProductCategories.Where(p => p.ProductCategoryID == id).Select(p => p.Name).FirstOrDefault().ToString();
-                ViewBag.DisplaySub = DisplaySubcategory; ViewBag.DisplayCat = DisplayCategory;
                 int SubcategoryID = db.ProductSubcategories.Where(p => p.Name.Equals(DisplaySubcategory)).Select(p => p.ProductSubcategoryID).FirstOrDefault();
 
+                //Names
+                ViewBag.DisplaySub = DisplaySubcategory;
+                ViewBag.DisplayCat = DisplayCategory;
+
+                //Numbers
                 ViewBag.SubID = SubcategoryID;
                 ViewBag.PrimID = id;
 
@@ -51,7 +59,10 @@ namespace HW6.Controllers
         /// <returns>Redirects to index if no selection was made, otherwise returns View using dbContext</returns>
         public ActionResult Item()
         {
+            //Get id from query string
             string id = Request.QueryString["product"];
+
+            //Make sure the user actually input a request and I didn't just launch from the display page again
             if (string.IsNullOrEmpty(id))
             {
                 return RedirectToAction("Index");
@@ -78,7 +89,6 @@ namespace HW6.Controllers
                     ViewBag.ItemDescription = null;
                 }
                 
-
                 //Getting item price
                 decimal price = db.Products.Where(p => p.ProductID == pid).Select(p => p.ListPrice).FirstOrDefault();
                 ViewBag.ItemPrice = price;
@@ -91,26 +101,12 @@ namespace HW6.Controllers
                 {
                     ViewBag.ItemColor = null;
                 }
-
-
+                
                 //CHECK IF ITEM HAS REVIEWS
                 ViewBag.HasReviews = false;
-                
-                
-                // FIX THIS - inserting image from database
-                //int photoID = db.ProductProductPhotoes.Where(p => p.ProductID == pid).Select(p => p.ProductPhotoID).FirstOrDefault();
-                //var img = db.ProductPhotoes.Where(p => p.ProductPhotoID == photoID).SelectMany(p => p.LargePhoto);
-                //byte[] img2 = img.ToArray();
-                //ViewBag.Image = ByteArrayToImage(img2);
+
                 return View(db.Products.ToList());
             }
-        }
-
-        public Image ByteArrayToImage(byte[] ByteArrayIn)
-        {
-            MemoryStream ms = new MemoryStream(ByteArrayIn);
-            Image r = Image.FromStream(ms);
-            return r;
         }
 
         /// <summary>
@@ -122,7 +118,10 @@ namespace HW6.Controllers
         {
             using (ProductsContext db = new ProductsContext())
             {
+                //Create the categories array
                 var Cat = new string[db.ProductCategories.Count()];
+
+                //Loop through and generate the category and its subcategories. Subcategories are added as a list to ViewData.
                 for (int i = 1; i <= db.ProductCategories.Count(); i++)
                 {
                     var x = db.ProductCategories.Where(p => p.ProductCategoryID == i).Select(p => p.Name).FirstOrDefault().ToString();
