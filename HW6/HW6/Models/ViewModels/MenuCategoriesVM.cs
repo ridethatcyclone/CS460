@@ -7,9 +7,13 @@ namespace HW6.Models.ViewModels
 {
     public class MenuCategoriesVM
     {
-        public int ProductCategoryID { get; set; }
-        public string ProductCategoryName { get; set; }
-        public int ProductSubcategoryID { get; set; }
-        public string ProductSubcategoryName { get; set; }
+        public IEnumerable<ProductCategory> ProductCategoryID { get; set; }
+        public IEnumerable<ProductCategory> ProductCategoryName { get; set; }
+        public IEnumerable<ProductSubcategory> ProductSubcategoryID { get; set; }
+        public IEnumerable<ProductSubcategory> ProductSubcategoryName { get; set; }
+        public IEnumerable<Product> Name { get; set; }
+        public IEnumerable<Product> ProductID { get; set; }
+        public IEnumerable<Product> Color { get; set; }
+        public IEnumerable<Product> ListPrice { get; set; }
     }
 }

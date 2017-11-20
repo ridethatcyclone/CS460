@@ -1,0 +1,37 @@
+﻿
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            @Html.ActionLink("Home", "Index", "Home", new { @class = "navbar-brand" })
+        </div>
+
+
+        <ul class="nav navbar-nav navbar-right">
+
+
+            @for (int i = 0; i < ViewBag.Categories.Length; i++)
+            {
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">@ViewBag.Categories[i]</a>
+                    <ul class="dropdown-menu">
+                        @foreach (var item in ViewData[ViewBag.Categories[i]] as IList<string>)
+                        {
+                            <li>
+                                @Html.ActionLink(
+                                        item,
+                                        "Display",
+                                        "Home",
+                                        new { @PID = item },
+                                        null
+                                   )
+                        </li>
+                        }
+                    </ul>
+                </li>
+            }
+
+
+
+        </ul>
+    </div>
+</nav>

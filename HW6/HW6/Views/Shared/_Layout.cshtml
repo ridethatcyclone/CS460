@@ -1,6 +1,4 @@
-﻿@model HW6.Models.ViewModels.MenuCategoriesVM
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -10,41 +8,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                @Html.ActionLink("Home", "Index", "Home", new { @class = "navbar-brand" })
-            </div>
-            
-
-            <ul class="nav navbar-nav navbar-right">
-                
-                
-                @for (int i = 0; i < ViewBag.Categories.Length; i++)
-                {
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Html.ViewBag.Categories[i]</a>
-                        <ul class="dropdown-menu">      
-                            @foreach (var item in ViewData[ViewBag.Categories[i]] as IList<string>)
-                            {
-                                @*<li><a href="#">@item</a></li>*@
-                                <li>@Html.ActionLink(
-                                        item,
-                                        "Display",
-                                        "Home",
-                                        new { @PID = item},
-                                        null
-                                   )</li>
-                            }
-                        </ul>
-                    </li>
-                }
-
-                
-
-            </ul>
-        </div>
-    </nav>
+    
     <div class="container body-content">
         @RenderBody()
     </div>
