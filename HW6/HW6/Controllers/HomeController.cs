@@ -1,5 +1,7 @@
 ﻿using HW6.Models.ViewModels;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -53,14 +55,62 @@ namespace HW6.Controllers
             if (string.IsNullOrEmpty(id))
             {
                 return RedirectToAction("Index");
-            }
+            }            
 
             using (ProductsContext db = new ProductsContext())
             {
-                string itemName = db.Products.Where(p => p.ProductID.ToString().Equals(id)).Select(p => p.Name).FirstOrDefault().ToString();
+                //Getting item Product ID
+                int pid = int.Parse(id);
+                ViewBag.ItemID = pid;
+
+                //Getting item name
+                string itemName = db.Products.Where(p => p.ProductID == pid).Select(p => p.Name).FirstOrDefault().ToString();
                 ViewBag.ItemName = itemName;
+
+                //Getting item description
+                try {
+                    int pmid = (int)db.Products.Where(p => p.ProductID == pid).Select(p => p.ProductModelID).FirstOrDefault();
+                    int descid = (int)db.ProductModelProductDescriptionCultures.Where(p => p.ProductModelID == pmid).Select(p => p.ProductDescriptionID).First();
+                    string desc = db.ProductDescriptions.Where(p => p.ProductDescriptionID == descid).Select(p => p.Description).FirstOrDefault().ToString();
+                    ViewBag.ItemDescription = desc;
+                } catch
+                {
+                    ViewBag.ItemDescription = null;
+                }
+                
+
+                //Getting item price
+                decimal price = db.Products.Where(p => p.ProductID == pid).Select(p => p.ListPrice).FirstOrDefault();
+                ViewBag.ItemPrice = price;
+
+                //Getting item color
+                try {
+                    string color = db.Products.Where(p => p.ProductID == pid).Select(p => p.Color).FirstOrDefault().ToString();
+                    ViewBag.ItemColor = color;
+                } catch
+                {
+                    ViewBag.ItemColor = null;
+                }
+
+
+                //CHECK IF ITEM HAS REVIEWS
+                ViewBag.HasReviews = false;
+                
+                
+                // FIX THIS - inserting image from database
+                //int photoID = db.ProductProductPhotoes.Where(p => p.ProductID == pid).Select(p => p.ProductPhotoID).FirstOrDefault();
+                //var img = db.ProductPhotoes.Where(p => p.ProductPhotoID == photoID).SelectMany(p => p.LargePhoto);
+                //byte[] img2 = img.ToArray();
+                //ViewBag.Image = ByteArrayToImage(img2);
                 return View(db.Products.ToList());
             }
+        }
+
+        public Image ByteArrayToImage(byte[] ByteArrayIn)
+        {
+            MemoryStream ms = new MemoryStream(ByteArrayIn);
+            Image r = Image.FromStream(ms);
+            return r;
         }
 
         /// <summary>
