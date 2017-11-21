@@ -177,6 +177,7 @@ namespace HW6.Controllers
                 review.ReviewDate = now;
                 review.ModifiedDate = now;
                 review.ProductID = pid;
+                review.Product = db.Products.Where(p => p.ProductID == pid).FirstOrDefault();
 
                 if (ModelState.IsValid)
                 {
