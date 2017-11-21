@@ -30,3 +30,59 @@ nav .navbar .navbar-inverse {
 ul .navbar {
     border-radius:0px;
 }
+
+
+/* Code for the Ratings taken from https://codepen.io/Bluetidepro/pen/GkpEa */
+.reviews {
+    width: 90%;
+    padding:20px;
+    margin-top:-20px;
+}
+
+.reviews review {
+    width:70%;
+    height:auto;
+}
+
+.rating {
+    unicode-bidi:bidi-override;
+    color: #c5c5c5;
+    font-size:40px;
+    height:40px;
+    width:100px;
+    margin:10% auto;
+    position:relative;
+    padding:0;
+    text-shadow:0px 1px 0 #a2a2a2;
+}
+
+.rating-top {
+    color:gold;
+    padding:0;
+    position:absolute;
+    z-index:1;
+    display:block;
+    top:0;
+    left:0;
+    overflow:hidden;
+}
+
+.rating-bottom {
+    padding:0;
+    display:block;
+    z-index:0;
+}
+
+.row {
+    overflow:hidden;
+}
+
+.row .match-col {
+    overflow: hidden;
+}
+
+.row.match-col [class*="col-"] {
+    margin-bottom: -99999px;
+    padding-bottom: 99999px;
+}
+

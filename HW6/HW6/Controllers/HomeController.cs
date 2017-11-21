@@ -1,4 +1,5 @@
 ﻿using HW6.Models.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -104,8 +105,16 @@ namespace HW6.Controllers
                 
                 //CHECK IF ITEM HAS REVIEWS
                 ViewBag.HasReviews = false;
+                foreach (var item in db.ProductReviews)
+                {
+                    if (item.ProductID == pid)
+                    {
+                        ViewBag.HasReviews = true;
+                        break;
+                    }
+                }
 
-                return View(db.Products.ToList());
+                return View(db.ProductReviews.ToList());
             }
         }
 
@@ -142,6 +151,43 @@ namespace HW6.Controllers
                 return PartialView("_Navbar");
             }
 
+        }
+
+        public ActionResult Create()
+        {
+            string id = Request.QueryString["product"];
+            
+            if (string.IsNullOrEmpty(id))
+            {
+                return RedirectToAction("Index");
+            }
+
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create([Bind(Include = "ReviewerName, EmailAddress, Rating, Comments")] ProductReview review)
+        {
+            string spid = Request.QueryString["product"];
+            int pid = int.Parse(spid);
+            using (ProductsContext db = new ProductsContext())
+            {
+                DateTime now = DateTime.Now;
+                review.ReviewDate = now;
+                review.ModifiedDate = now;
+                review.ProductID = pid;
+
+                if (ModelState.IsValid)
+                {
+                    db.ProductReviews.Add(review);
+                    db.SaveChanges();
+                    return RedirectToAction("Item", new { product = review.ProductID});
+                }
+
+                return View(review);
+            }
+                
         }
 
 

@@ -1,6 +1,6 @@
-﻿@model IEnumerable<HW6.Product>
+﻿@model IEnumerable<HW6.ProductReview>
 
-@{ 
+@{
     ViewBag.Title = "Adventure Works | " + ViewBag.ItemName;
 }
 
@@ -29,25 +29,55 @@
                 {
                     <li class="list-group-item">Color: @ViewBag.ItemColor</li>
                 }
-                
+
             </ul>
         </div>
     </div><br /><br />
-    <div class="row">
-        <div style="margin-left:10px;">
-            <h2>Reviews</h2>
-        </div>
-        <hr />
-        <div class="reviews">
-            @if (ViewBag.HasReviews)
-            {
+    <div class="row match-col">
+        <div class="col-md-11">
+            <div style="margin-left:10px;">
+                <h2>Reviews</h2>
+            </div>
+            <hr />
+            <div class="reviews">
+                @if (ViewBag.HasReviews)
+                {
+                    foreach (var item in Model)
+                    {
+                        if (item.ProductID == ViewBag.ItemID)
+                        {
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="review">
+                                        <h4>@item.ReviewerName</h4>
+                                        <p>@item.Comments</p>
+                                    </div>
+                                </div>
 
-            }
-            else
-            {
-                <p>No reviews for this product yet! Would you like to submit one?</p>
-            }
-            <button type="button" class="btn btn-primary btn-lg">Add a Review</button>
+                                <div class="col-md-4">
+                                    <div class="rating">
+                                        <div class="rating-top" style="@((item.Rating)*20)">
+                                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                        </div>
+                                        <div class="rating-bottom">
+                                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+
+                            </div>
+                            <hr />
+                        }
+
+                    }
+                }
+                else
+                {
+                    <p>No reviews for this product yet! Would you like to submit one?</p>
+                }
+                <a href="@Url.Action("Create","Home", new { @product = ViewBag.ItemID })"><button type="button" class="btn btn-primary btn-lg">Add a Review</button></a>
+            </div>
         </div>
     </div>
     <div class="row">
