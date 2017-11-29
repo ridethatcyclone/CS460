@@ -24,3 +24,8 @@
 #searchcontrols {
     align-content:center;
 }
+
+#gifList .gifRow {
+    padding:15px;
+    margin:10px;
+}

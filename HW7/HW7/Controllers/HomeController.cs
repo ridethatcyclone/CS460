@@ -10,6 +10,8 @@ namespace HW7.Controllers
     {
         public ActionResult Index()
         {
+            string GiphyAPIKey = System.Web.Configuration.WebConfigurationManager.AppSettings["GiphyAPIKey"];
+            ViewBag.GiphyKey = GiphyAPIKey;
             return View();
         }
         

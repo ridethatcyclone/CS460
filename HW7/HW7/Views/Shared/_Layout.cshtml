@@ -11,9 +11,10 @@
     <div class="container body-content">
         @RenderBody()
     </div>
-
+    <input type="hidden" id="key" data-value="@ViewBag.GiphyKey" />
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    @Scripts.Render("~/Scripts/script.js")
 </body>
 </html>
