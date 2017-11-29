@@ -25,7 +25,22 @@
     align-content:center;
 }
 
+#gifList {
+    width:85%;
+    margin: 0 auto;
+}
+
 #gifList .gifRow {
     padding:15px;
     margin:10px;
+}
+
+#gifList .gifCol {
+    width:30%;
+    overflow:hidden;
+}
+
+.displayGif {
+    width:200px;
+    height:auto;
 }
