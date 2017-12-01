@@ -1,0 +1,30 @@
+﻿@model IEnumerable<HW8.Controllers.ArtWork>
+
+@{
+    ViewBag.Title = "Art Works";
+}
+
+<h2>Art Works</h2>
+
+<table class="table table-responsive table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Artist.Name)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Artist.Name)
+        </td>
+    </tr>
+}
+
+</table>
