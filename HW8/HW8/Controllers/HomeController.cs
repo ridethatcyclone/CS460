@@ -11,7 +11,11 @@ namespace HW8.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            using (ArtInfoContext db = new ArtInfoContext())
+            {
+                List<Genre> genres = db.Genres.ToList();
+                return View(genres);
+            }
         }
         
     }

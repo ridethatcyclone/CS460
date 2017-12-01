@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HW8.Controllers;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace HW8.Views
 {
@@ -80,7 +81,33 @@ namespace HW8.Views
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ArtistID,Name,BirthDate,BirthCity")] Artist artist)
         {
-            if (ModelState.IsValid)
+            // Check to make sure birthday was entered
+            if (string.IsNullOrEmpty(artist.BirthDate))
+                return View(artist);
+            else
+            {
+                // Checking to make sure date is valid (not in the future)
+                string[] dateParse = artist.BirthDate.Split('-');
+                if (dateParse.Length > 10)
+                    return View(artist);
+                int year = 0, month = 0, day = 0;
+                int.TryParse(dateParse[0], out year);
+                int.TryParse(dateParse[1], out month);
+                int.TryParse(dateParse[2], out day);
+                if (year > DateTime.Now.Year || month > 12 || day > 31)
+                    return View(artist);
+            }
+
+            // Check to make sure name isn't empty
+            if (string.IsNullOrEmpty(artist.Name))
+                return View(artist);
+            // Check to make sure name is no longer than 50 characters
+            else if (artist.Name.Length > 50)
+                return View(artist);
+            // Check to make sure birth city isn't empty
+            else if (string.IsNullOrEmpty(artist.BirthCity))
+                return View(artist);
+            else if (ModelState.IsValid)
             {
                 db.Entry(artist).State = EntityState.Modified;
                 db.SaveChanges();

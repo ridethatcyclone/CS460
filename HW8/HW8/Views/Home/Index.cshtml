@@ -1,4 +1,6 @@
-﻿@{ 
+﻿@model IEnumerable<HW8.Controllers.Genre>
+
+@{ 
     ViewBag.Title = "Home";
 }
 
@@ -17,9 +19,19 @@
             <p>
                 Thank you for visiting!
             </p>
+            <div id="genresTable">
+                <div class="btn-group">
+                    @foreach (var item in Model)
+                    {
+                        <button class="btn btn-default" onclick="ajaxDisplay('@item.GenreID')">@Html.DisplayFor(modelItem => item.Name)</button>
+                    }
+                </div>
+            </div>
         </div>
         <div class="col-md-6" id="imgcol">
             <img src="~/Images/mona-lisa.jpg" id="homeImg"/>
         </div>
     </div>
 </div>
+
+<script type="text/javascript" src="@Url.Content("/Scripts/myscript.js")"></script>

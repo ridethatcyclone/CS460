@@ -25,10 +25,14 @@ textarea {
 
 #imgcol {
     overflow:hidden;
-    height:550px;
+    height:600px;
 }
 
 #homeImg {
     margin-top:10%;
     width:80%;
+}
+
+#genresTable {
+    text-align:center;
 }
