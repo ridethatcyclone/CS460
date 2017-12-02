@@ -9,22 +9,12 @@ namespace HW8.Controllers
     public class HomeController : Controller
     {
         private ArtInfoContext db = new ArtInfoContext();
-        
+
         public ActionResult Index()
         {
             List<Genre> genres = db.Genres.ToList();
             return View(genres);
         }
-
-        /*
-        [HttpPost]
-        public JsonResult Genres(string genre)
-        {
-            List<ArtWork> artworks = new List<ArtWork>();
-            artworks = db.ArtWorks.ToList();
-            return Json(artworks, JsonRequestBehavior.AllowGet);
-        }
-        */
 
         public JsonResult Genre(int id)
         {
