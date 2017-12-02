@@ -8,6 +8,7 @@ namespace HW8.Controllers
 
     public partial class Classification
     {
+        [Key]
         public int ClassificationID { get; set; }
 
         public int ArtworkID { get; set; }

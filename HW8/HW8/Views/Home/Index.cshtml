@@ -18,13 +18,16 @@
             </p>
             <p>
                 Thank you for visiting!
-            </p>
+            </p><hr />
             <div id="genresTable">
                 <div class="btn-group">
-                    @foreach (var item in Model)
+
+                    @foreach (var item in Model.ToList())
                     {
-                        <button class="btn btn-default" onclick="ajaxDisplay('@item.GenreID')">@Html.DisplayFor(modelItem => item.Name)</button>
+                        <button class="btn btn-default" onclick="ajaxDisplay('@item.GenreID')">@item.Name</button>
                     }
+                </div>
+                <div id="out">
                 </div>
             </div>
         </div>
@@ -34,4 +37,5 @@
     </div>
 </div>
 
-<script type="text/javascript" src="@Url.Content("/Scripts/myscript.js")"></script>
+    <script type="text/javascript" src="~/Scripts/myscript.js"></script>
+

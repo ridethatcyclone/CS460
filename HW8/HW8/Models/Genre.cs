@@ -13,10 +13,11 @@ namespace HW8.Controllers
         {
             Classifications = new HashSet<Classification>();
         }
-
+        
         public int GenreID { get; set; }
 
-        [StringLength(30)]
+        [Required]
+        [StringLength(64)]
         [Display(Name="Genre")]
         public string Name { get; set; }
 

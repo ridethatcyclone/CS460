@@ -10,30 +10,30 @@ using HW8.Controllers;
 
 namespace HW8.Views
 {
-    public class ClassificationsController : Controller
+    public class GenresController : Controller
     {
         private ArtInfoContext db = new ArtInfoContext();
 
-        // GET: Classifications
+        // GET: Genres
         public ActionResult Index()
         {
-            var classifications = db.Classifications.Include(c => c.ArtWork).Include(c => c.Genre);
-            return View(classifications.ToList());
+            return View(db.Genres.ToList());
         }
 
+        // GET: Genres/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Classification classification = db.Classifications.Find(id);
-            if (classification == null)
+            Genre genre = db.Genres.Find(id);
+            if (genre == null)
             {
                 return HttpNotFound();
             }
-            return View(classification);
+            return View(genre);
         }
-
+        
     }
 }
