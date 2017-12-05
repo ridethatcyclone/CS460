@@ -1,5 +1,14 @@
 ﻿@{ 
     ViewBag.Title = "Reginald's Ancient Antiquities Auction House";
 }
-
-<h2>Welcome</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+            <h2>Welcome</h2>
+            <hr />
+            <p>This is the page for Reginald's Ancient Antiques Auction House. Please feel free to look around.</p>
+            <br />
+            <a href="@Url.Action("AddBid","Home")"><button type="button" class="btn btn-default">Bid on an Item!</button></a>
+        </div>
+    </div>
+</div>
