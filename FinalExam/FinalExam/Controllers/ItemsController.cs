@@ -128,5 +128,24 @@ namespace FinalExam.Views
             }
             base.Dispose(disposing);
         }
+
+        public JsonResult ListBids(int id)
+        {
+
+            var bids = db.Items.Find(id)
+                .Bids.ToList()
+                .OrderByDescending(b => b.Price)
+                .Select(a => new { b = a.BuyerID, c = a.BidID})
+                .ToList();
+            string[] listmaker = new string[bids.Count];
+
+            for (int i = 0; i < listmaker.Length; i++)
+            {
+                listmaker[i] = $"<ul>{db.Buyers.Find(bids[i].b).Name} bid ${db.Bids.Find(bids[i].c).Price}</ul>";
+            }
+
+            var data = new { arr = listmaker };
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
     }
 }
