@@ -1,0 +1,77 @@
+﻿@model FinalExam.Item
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Item</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Seller.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Seller.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+    </dl>
+    <span id="itemIDSpan" class="hidden">@Model.ItemID</span>
+    <div id="out">
+        <!--Bid listing will go here-->
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ItemID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+@Scripts.Render("~/bundles/jquery")
+<script>
+    window.setInterval(ajax_call, 5000);
+    function ajax_call() {
+        var id = @Model.ItemID;
+        $.ajax({
+            type: 'GET',
+            dataType: 'json',
+            url: '/Items/ListBids/' + id,
+            data: { id: id },
+            success: displayResults,
+            error: itFailed
+        });
+    }
+
+    function displayResults(data) {
+        $('#out').empty();
+
+        var item = document.getElementById("out");
+        data.arr.forEach(function (item) {
+            $('#out').append(item);
+        })
+        console.log(data);
+    }
+
+    function itFailed() {
+        console.log("An error occurred.");
+    }
+
+</script>
