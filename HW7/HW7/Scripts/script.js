@@ -21,8 +21,7 @@ function main()
                 url: requestLink,
                 dataType: 'json',
                 success: function (response) {
-                    console.log('success', response);
-                    
+
                     if (animated == 'true') {
                         for (i = 0; i < 9; i++) {
                             if (i < 3) {
@@ -50,9 +49,18 @@ function main()
                             }
                         }
                     }
-                    
+
                 }
-            })
+            });
+
+            $.ajax({
+                type: 'POST',
+                url: '/Home/Index/',
+                data: { search: searchString },
+                success: function () {
+                    console.log("Yay");
+                }
+            });
         }
 
         

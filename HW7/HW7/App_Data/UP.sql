@@ -1,0 +1,9 @@
+﻿DROP TABLE IF EXISTS dbo.Searches;
+
+CREATE TABLE dbo.Searches (
+	SearchID INT IDENTITY(1,1) NOT NULL,
+	SearchPhrase NVARCHAR(128) NOT NULL,
+	Timestamp DATETIME NOT NULL,
+
+	CONSTRAINT[PK_dbo.Searches] PRIMARY KEY CLUSTERED (SearchID ASC)
+);
